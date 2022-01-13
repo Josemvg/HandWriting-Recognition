@@ -5,5 +5,5 @@ Small project on developing a Handwritten Text Recognition (HTR) System over a S
 The **images are obtained by extracting it from a box (canvas) in which the user can draw** on the Streamlit app.
 
 ## References
-[How to easily do Handwriting Recognition using Deep Learning] (https://nanonets.com/blog/handwritten-character-recognition/)
-[SimpleHTR - Handwritten Text Recognition with TensorFlow] (https://github.com/githubharald/SimpleHTR)
+* [How to easily do Handwriting Recognition using Deep Learning](https://nanonets.com/blog/handwritten-character-recognition/)
+* [SimpleHTR - Handwritten Text Recognition with TensorFlow](https://github.com/githubharald/SimpleHTR)
