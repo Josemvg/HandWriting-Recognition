@@ -16,6 +16,8 @@ class FilePaths:
     fn_char_list = '../model/charList.txt'
     fn_summary = '../model/summary.json'
     fn_corpus = '../data/corpus.txt'
+    fn_word_model = '../model/word-model/charList.txt'
+    fn_line_model = '../model/line-model/charList.txt'
 
 
 def get_img_height() -> int:
@@ -153,9 +155,11 @@ def main():
                        'beamsearch': DecoderType.BeamSearch,
                        'wordbeamsearch': DecoderType.WordBeamSearch}
     decoder_type = decoder_mapping[args.decoder]
-
+    print("I'm here LOL")
+    
     # train or validate on IAM dataset
     if args.mode in ['train', 'validate']:
+        print("I'm here LOL")
         # load training data, create TF model
         loader = DataLoaderIAM(args.data_dir, args.batch_size, fast=args.fast)
         char_list = loader.char_list
@@ -180,7 +184,7 @@ def main():
 
     # infer text on test image
     elif args.mode == 'infer':
-        model = Model(list(open(FilePaths.fn_char_list).read()), decoder_type, must_restore=True, dump=args.dump)
+        model = Model(list(open(FilePaths.fn_word_model).read()), decoder_type, must_restore=True, dump=args.dump)
         infer(model, args.img_file)
 
 
