@@ -4,11 +4,12 @@ import numpy as np
 from PIL import Image
 from path import Path
 import streamlit as st
-from typing import Tuple, List
+from typing import Tuple
+from dataloader_iam import Batch
+from model import Model, DecoderType
 from preprocessor import Preprocessor
 from streamlit_drawable_canvas import st_canvas
-from dataloader_iam import DataLoaderIAM, Batch
-from model import Model, DecoderType
+
 
 def get_img_size(line_mode: bool = False) -> Tuple[int, int]:
     """Height is fixed for NN, width is set according to training mode (single words or text lines)."""
@@ -65,14 +66,14 @@ def main():
     decoderSelect = st.selectbox("Select a Decoder", ['Bestpath', 'Beamsearch', 'Wordbeamsearch'])
 
     modelMapping = {
-        "Model 1": "word-model",
-        "Model 2": "line-model"
+        "Model 1": '../model/word-model/charList.txt',
+        "Model 2": '../model/line-model/charList.txt'
     }
 
     decoderMapping = {
-        'bestpath': DecoderType.BestPath,
-        'beamsearch': DecoderType.BeamSearch,
-        'wordbeamsearch': DecoderType.WordBeamSearch
+        'Bestpath': DecoderType.BestPath,
+        'Beamsearch': DecoderType.BeamSearch,
+        'Wordbeamsearch': DecoderType.WordBeamSearch
     }
 
     strokeWidth = st.slider("Stroke Width: ", 1, 25, 6)
@@ -102,27 +103,15 @@ def main():
 
         inputImage = Image.fromarray(inputArray.astype('uint8'), 'RGBA')
         inputImage.save('userInput.png')
-        charListDir = '../model/line-model/charList.txt'
-        charListDir = '../model/word-model/charList.txt'
-        decoderType = decoderMapping[decoderSelect.lower()]
+        charListDir = modelMapping[modelSelect]
+        decoderType = decoderMapping[decoderSelect]
 
-        model = Model(charListDir, decoderType, must_restore=True, dump = 'store_true')
+        model = Model(list(open(charListDir).read()), decoderType, must_restore=True, dump = 'store_true')
         inferedText = infer(model, 'userInput.png')
-        
-        st.write("**3 Best Candidates: **", inferedText[0][0])
-        st.write("**Probabilities: **", str(inferedText[0][0]*100) + "%")
-        
-        """
-        cv2InputImage = cv2.imread('userInput.png', cv2.IMREAD_UNCHANGED)    
-        transpMask = cv2InputImage[:,:,3] == 0
-        #replace areas of transparency with white and not transparent
-        cv2InputImage[transpMask] = [255, 255, 255, 255]
 
-        #new image without alpha channel...
-        finalImageArray = cv2.cvtColor(cv2InputImage, cv2.COLOR_BGRA2BGR)
-        finalImage = Image.fromarray(finalImageArray.astype('uint8'), 'RGBA')
-        finalImage.save('userInput.png')
-        """
+        st.write(inferedText)
+        st.write("**Best Candidate: **", inferedText[0][0])
+        st.write("**Probability: **", str(inferedText[1][0]*100) + "%")
 
 if __name__ == "__main__":
     main()
