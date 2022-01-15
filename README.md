@@ -11,7 +11,7 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 ```
 2. Install the required Python Libraries
 ```
-	pip install requierements.txt
+	pip install requirements.txt
 ```
 3. Download the pretrained models and extract them on the model folder, under line-word and model-word folders respectively:
    * [Model 1 - Trained on Single Word Images](https://www.dropbox.com/s/mya8hw6jyzqm0a3/word-model.zip?dl=1)
