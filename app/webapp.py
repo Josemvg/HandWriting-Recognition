@@ -66,8 +66,8 @@ def main():
     decoderSelect = st.selectbox("Select a Decoder", ['Bestpath', 'Beamsearch', 'Wordbeamsearch'])
 
     modelMapping = {
-        "Model 1": '../model/word-model/charList.txt',
-        "Model 2": '../model/line-model/charList.txt'
+        "Model 1": '../model/word-model',
+        "Model 2": '../model/line-model'
     }
 
     decoderMapping = {
@@ -86,6 +86,7 @@ def main():
         width = 400,
         drawing_mode='freedraw',
         key="canvas",
+        background_color = '#FFFFFF'
     )
 
     inputBuffer = st.file_uploader("Upload an Image", type=["png"])
@@ -103,13 +104,12 @@ def main():
 
         inputImage = Image.fromarray(inputArray.astype('uint8'), 'RGBA')
         inputImage.save('userInput.png')
-        charListDir = modelMapping[modelSelect]
+        modelDir = modelMapping[modelSelect]
         decoderType = decoderMapping[decoderSelect]
 
-        model = Model(list(open(charListDir).read()), decoderType, must_restore=True, dump = 'store_true')
+        model = Model(list(open(modelDir + "/charList.txt").read()), modelDir, decoderType, must_restore=True)
         inferedText = infer(model, 'userInput.png')
 
-        st.write(inferedText)
         st.write("**Best Candidate: **", inferedText[0][0])
         st.write("**Probability: **", str(inferedText[1][0]*100) + "%")
 

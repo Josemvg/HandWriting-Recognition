@@ -13,11 +13,14 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 ```
 	pip install requierements.txt
 ```
-3. Next, to run the WebApp execute runner.py or the streamlit app from the app folder:
+3. Download the pretrained models and extract them on the model folder, under line-word and model-word respectively:
+   * (Model 1 - Trained on Single Word Images)[https://www.dropbox.com/s/mya8hw6jyzqm0a3/word-model.zip?dl=1]
+   * (Model 2 - Trained on Text Line Images)[https://www.dropbox.com/s/7xwkcilho10rthn/line-model.zip?dl=1]
+4. Next, to run the WebApp execute runner.py or the streamlit app (from the app folder) by using:
 ```
 	streamlit run webapp.py
 ```
-4. Once you have the app running, you may now select the Model and Decoder or stick to the Default.
+5. Once you have the app running, you may now select the Model and Decoder or stick to the Default.
 
    <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Selectors.png"></p>
 

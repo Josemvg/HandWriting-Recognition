@@ -23,6 +23,7 @@ class Model:
 
     def __init__(self,
                  char_list: List[str],
+                 model_dir: str,
                  decoder_type: str = DecoderType.BestPath,
                  must_restore: bool = False,
                  dump: bool = False) -> None:
@@ -32,7 +33,7 @@ class Model:
         self.decoder_type = decoder_type
         self.must_restore = must_restore
         self.snap_ID = 0
-
+        self.model_dir = model_dir
         # Whether to use normalization over a batch or a population
         self.is_train = tf.compat.v1.placeholder(tf.bool, name='is_train')
 
@@ -152,9 +153,8 @@ class Model:
 
         sess = tf.compat.v1.Session()  # TF session
 
-        saver = tf.compat.v1.train.Saver(max_to_keep=1)  # saver saves model to file
-        model_dir = '../model/word-model/'
-        latest_snapshot = tf.train.latest_checkpoint(model_dir)  # is there a saved model?
+        saver = tf.compat.v1.train.Saver(max_to_keep=1)  # saver saves model to file   
+        latest_snapshot = tf.train.latest_checkpoint(self.model_dir )  # is there a saved model?
 
         # if model must be restored (for inference), there must be a snapshot
         if self.must_restore and not latest_snapshot:
