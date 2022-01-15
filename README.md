@@ -19,10 +19,16 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 ```
 4. Once you have the app running, you may now select the Model and Decoder or stick to the Default.
 
-You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen):
+   <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Selector.png"></p>
 
-Or by uploading an image from your own device.
+   You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen):
+	
+   <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Canvas.png"></p>
+   
+   Or by uploading an image from your own device.
 
+   <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Upload.png"></p>
+   
 5. Finally, press the Infer button to obtain the most accurate candidate according to the Model, and its probability.
 
 ## References
