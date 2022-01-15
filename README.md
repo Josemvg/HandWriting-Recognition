@@ -19,7 +19,7 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 ```
 4. Once you have the app running, you may now select the Model and Decoder or stick to the Default.
 
-   <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Selector.png"></p>
+   <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Selectors.png"></p>
 
    You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen):
 	
