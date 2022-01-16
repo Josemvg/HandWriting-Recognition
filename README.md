@@ -11,11 +11,11 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 ```
 2. Install the required Python Libraries
 ```
-	pip install requierements.txt
+	pip install requirements.txt
 ```
-3. Download the pretrained models and extract them on the model folder, under line-word and model-word respectively:
-   * (Model 1 - Trained on Single Word Images)[https://www.dropbox.com/s/mya8hw6jyzqm0a3/word-model.zip?dl=1]
-   * (Model 2 - Trained on Text Line Images)[https://www.dropbox.com/s/7xwkcilho10rthn/line-model.zip?dl=1]
+3. Download the pretrained models and extract them on the model folder, under line-word and model-word folders respectively:
+   * [Model 1 - Trained on Single Word Images](https://www.dropbox.com/s/mya8hw6jyzqm0a3/word-model.zip?dl=1)
+   * [Model 2 - Trained on Text Line Images](https://www.dropbox.com/s/7xwkcilho10rthn/line-model.zip?dl=1)
 4. Next, to run the WebApp execute runner.py or the streamlit app (from the app folder) by using:
 ```
 	streamlit run webapp.py
@@ -26,11 +26,11 @@ The **images are obtained by extracting it from a box (canvas) in which the user
    
    **Note:** For a tutorial on how to configure (Word Beam Search Decoder)[https://repositum.tuwien.at/retrieve/1835], please visit the [SimpleHTR Repository](https://github.com/githubharald/SimpleHTR)
 
-   You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen):
+   You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen as well):
 	
    <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Canvas.png"></p>
    
-   Or by uploading an image from your own device.
+   Or by uploading an image from your own device:
 
    <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Upload.png"></p>
    
