@@ -24,7 +24,7 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 
    <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Selectors.png"></p>
    
-   **Note:** For a tutorial on how to configure (Word Beam Search Decoder)[https://repositum.tuwien.at/retrieve/1835], please visit the [SimpleHTR Repository](https://github.com/githubharald/SimpleHTR)
+   **Note:** For a tutorial on how to configure [Word Beam Search Decoder](https://repositum.tuwien.at/retrieve/1835), please visit the [SimpleHTR Repository](https://github.com/githubharald/SimpleHTR)
 
    You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen as well):
 	
