@@ -23,6 +23,8 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 5. Once you have the app running, you may now select the Model and Decoder or stick to the Default.
 
    <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Selectors.png"></p>
+   
+   **Note:** For a tutorial on how to configure (Word Beam Search Decoder)[https://repositum.tuwien.at/retrieve/1835], please visit the [SimpleHTR Repository](https://github.com/githubharald/SimpleHTR)
 
    You can start using the app either by writing on the canvas (bear in mind that you can change the stroke width of the pen):
 	
@@ -32,7 +34,7 @@ The **images are obtained by extracting it from a box (canvas) in which the user
 
    <p align="center"><img src="https://raw.githubusercontent.com/Josemvg/HandWriting-Recognition/master/docs/img/Upload.png"></p>
    
-5. Finally, press the Infer button to obtain the most accurate candidate according to the Model, and its probability.
+6. Finally, press the Infer button to obtain the most accurate candidate according to the Model, and its probability.
 
 ## References
 Models used on this app pertain to the SimpleHTR Repository by Harald Scheidl.

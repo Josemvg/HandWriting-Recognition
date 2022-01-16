@@ -12,14 +12,18 @@ tf.compat.v1.disable_eager_execution()
 
 
 class DecoderType:
-    """CTC decoder types."""
+    """
+    CTC decoder types.
+    """
     BestPath = 0
     BeamSearch = 1
     WordBeamSearch = 2
 
 
 class Model:
-    """Minimalistic TF model for HTR."""
+    """
+    Minimalistic TF model for HTR.
+    """
 
     def __init__(self,
                  char_list: List[str],
@@ -27,7 +31,9 @@ class Model:
                  decoder_type: str = DecoderType.BestPath,
                  must_restore: bool = False,
                  dump: bool = False) -> None:
-        """Init model: add CNN, RNN and CTC and initialize TF."""
+        """
+        Init model: add CNN, RNN and CTC and initialize TF.
+        """
         self.dump = dump
         self.char_list = char_list
         self.decoder_type = decoder_type
@@ -55,7 +61,9 @@ class Model:
         self.sess, self.saver = self.setup_tf()
 
     def setup_cnn(self) -> None:
-        """Create CNN layers."""
+        """
+        Create CNN layers.
+        """
         cnn_in4d = tf.expand_dims(input=self.input_imgs, axis=3)
 
         # list of parameters for the layers
@@ -79,7 +87,9 @@ class Model:
         self.cnn_out_4d = pool
 
     def setup_rnn(self) -> None:
-        """Create RNN layers."""
+        """
+        Create RNN layers.
+        """
         rnn_in3d = tf.squeeze(self.cnn_out_4d, axis=[2])
 
         # basic cells which is used to build RNN
@@ -104,7 +114,9 @@ class Model:
                                      axis=[2])
 
     def setup_ctc(self) -> None:
-        """Create CTC loss and decoder."""
+        """
+        Create CTC loss and decoder.
+        """
         # BxTxC -> TxBxC
         self.ctc_in_3d_tbc = tf.transpose(a=self.rnn_out_3d, perm=[1, 0, 2])
         # ground truth text as sparse tensor
@@ -147,7 +159,9 @@ class Model:
             self.wbs_input = tf.nn.softmax(self.ctc_in_3d_tbc, axis=2)
 
     def setup_tf(self) -> Tuple[tf.compat.v1.Session, tf.compat.v1.train.Saver]:
-        """Initialize TF."""
+        """
+        Initialize TF.
+        """
         print('Python: ' + sys.version)
         print('Tensorflow: ' + tf.__version__)
 
@@ -171,7 +185,9 @@ class Model:
         return sess, saver
 
     def to_sparse(self, texts: List[str]) -> Tuple[List[List[int]], List[int], List[int]]:
-        """Put ground truth texts into sparse tensor for ctc_loss."""
+        """
+        Put ground truth texts into sparse tensor for ctc_loss.
+        """
         indices = []
         values = []
         shape = [len(texts), 0]  # last entry must be max(labelList[i])
@@ -191,7 +207,9 @@ class Model:
         return indices, values, shape
 
     def decoder_output_to_text(self, ctc_output: tuple, batch_size: int) -> List[str]:
-        """Extract texts from output of CTC decoder."""
+        """
+        Extract texts from output of CTC decoder.
+        """
 
         # word beam search: already contains label strings
         if self.decoder_type == DecoderType.WordBeamSearch:
@@ -215,7 +233,9 @@ class Model:
         return [''.join([self.char_list[c] for c in labelStr]) for labelStr in label_strs]
 
     def train_batch(self, batch: Batch) -> float:
-        """Feed a batch into the NN to train it."""
+        """
+        Feed a batch into the NN to train it.
+        """
         num_batch_elements = len(batch.imgs)
         max_text_len = batch.imgs[0].shape[0] // 4
         sparse = self.to_sparse(batch.gt_texts)
@@ -228,7 +248,9 @@ class Model:
 
     @staticmethod
     def dump_nn_output(rnn_output: np.ndarray) -> None:
-        """Dump the output of the NN to CSV file(s)."""
+        """
+        Dump the output of the NN to CSV file(s).
+        """
         dump_dir = '../dump/'
         if not os.path.isdir(dump_dir):
             os.mkdir(dump_dir)
@@ -247,7 +269,9 @@ class Model:
                 f.write(csv)
 
     def infer_batch(self, batch: Batch, calc_probability: bool = False, probability_of_gt: bool = False):
-        """Feed a batch into the NN to recognize the texts."""
+        """
+        Feed a batch into the NN to recognize the texts.
+        """
 
         # decode, optionally save RNN output
         num_batch_elements = len(batch.imgs)
@@ -301,6 +325,8 @@ class Model:
         return texts, probs
 
     def save(self) -> None:
-        """Save model to file."""
+        """
+        Save model to file.
+        """
         self.snap_ID += 1
         self.saver.save(self.sess, '../model/snapshot', global_step=self.snap_ID)
